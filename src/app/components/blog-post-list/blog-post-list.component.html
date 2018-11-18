@@ -1,19 +1,21 @@
 <h3 class="mainHeader">BLOG POST LIST</h3>
-<p-table value="">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Post Title:</th>
-            <th>Post Description:</th>
-            <th>Comments Amount:</th>
-            <th>Options:</th>
-        </tr>
-    </ng-template>
-    <!-- <ng-template pTemplate="body" let-car>
-        <tr>
-            <td>{{car.vin}}</td>
-            <td>{{car.year}}</td>
-            <td>{{car.brand}}</td>
-            <td>{{car.color}}</td>
-        </tr>
-    </ng-template> -->
+<p-table [value]="posts">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Post ID:</th>
+      <th>Post Title:</th>
+      <th>Post Description:</th>
+      <th>Comments Amount:</th>
+      <th>Options:</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-post>
+    <tr>
+      <td>{{ post.id }}</td>
+      <td>{{ post.title }}</td>
+      <td>{{ post.description }}</td>
+      <td>{{ post.comments ? post.comments.length : 0 }}</td>
+      <td>EDIT</td>
+    </tr>
+  </ng-template>
 </p-table>

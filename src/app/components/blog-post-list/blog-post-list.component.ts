@@ -1,3 +1,5 @@
+import { BlogPost } from './../../models/blogPost';
+import { HttpService } from './../../services/http.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blog-post-list.component.css']
 })
 export class BlogPostListComponent implements OnInit {
+  public posts: Array<BlogPost>;
 
-  constructor() { }
-
+  constructor(private httpService: HttpService) {}
   ngOnInit() {
+    this.getPostsFromAPI();
   }
 
+  private getPostsFromAPI() {
+    this.httpService.getPosts().subscribe((response: BlogPost[]) => {
+      this.posts = response;
+    });
+  }
 }

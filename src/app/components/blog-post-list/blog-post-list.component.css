@@ -3,3 +3,7 @@
   font-size: 42px;
   text-align: center;
 }
+
+:host::ng-deep .ui-table .ui-table-tbody > tr > td {
+  text-align: center;
+}

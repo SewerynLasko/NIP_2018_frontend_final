@@ -1,34 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpService } from './services/http.service';
 import { BlogPost } from './models/blogPost';
+import { HttpService } from './services/http.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-
 export class AppComponent implements OnInit {
-  public post: BlogPost = { title: 'SomeTitle', description: 'somebody', comments: null };
+  public post: BlogPost = { id: 1, title: 'SomeTitle', description: 'somebody', comments: null };
   public posts: BlogPost[];
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService) {}
 
-  ngOnInit() {
-    this.getPostsData();
-  }
+  ngOnInit() {}
 
   public addPost() {
-    this.httpService.postPosts(this.post).subscribe(
-      (response: BlogPost) => {
-        console.log(response);
-      }
-    );
-  }
-
-  private getPostsData() {
-    this.httpService.getPosts().subscribe((posts: BlogPost[]) => {
-      this.posts = posts;
+    this.httpService.postPosts(this.post).subscribe((response: BlogPost) => {
+      console.log(response);
     });
   }
 }
