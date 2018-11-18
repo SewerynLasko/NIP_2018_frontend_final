@@ -1,6 +1,6 @@
 import { HttpService } from './http.service';
 import { Component, OnInit } from '@angular/core';
-import { Post } from './post';
+import { BlogPost } from './models/blogPost';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +9,8 @@ import { Post } from './post';
 })
 
 export class AppComponent implements OnInit {
-  public post: Post = { title: 'SomeTitle', body: 'somebody' };
-  public posts: Post[];
+  public post: BlogPost = { title: 'SomeTitle', description: 'somebody', comments: null };
+  public posts: BlogPost[];
 
   constructor(private httpService: HttpService) { }
 
@@ -20,14 +20,14 @@ export class AppComponent implements OnInit {
 
   public addPost() {
     this.httpService.postPosts(this.post).subscribe(
-      (response: Post) => {
+      (response: BlogPost) => {
         console.log(response);
       }
     );
   }
 
   private getPostsData() {
-    this.httpService.getPosts().subscribe((posts: Post[]) => {
+    this.httpService.getPosts().subscribe((posts: BlogPost[]) => {
       this.posts = posts;
     });
   }
