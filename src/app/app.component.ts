@@ -1,5 +1,5 @@
-import { HttpService } from './http.service';
 import { Component, OnInit } from '@angular/core';
+import { HttpService } from './services/http.service';
 import { BlogPost } from './models/blogPost';
 
 @Component({

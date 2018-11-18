@@ -1,9 +1,9 @@
-import { Settings } from './utils/settings';
-import { environment } from './../environments/environment';
+import { Settings } from '../utils/settings';
+import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { BlogPost } from './models/blogPost';
+import { BlogPost } from '../models/blogPost';
 
 
 @Injectable()
