@@ -15,6 +15,10 @@ export class BlogPostListComponent implements OnInit {
     this.getPostsFromAPI();
   }
 
+  public deletePost(postId: number) {
+    this.httpService.deletePost(postId).subscribe(response => console.log(response));
+  }
+
   private getPostsFromAPI() {
     this.httpService.getPosts().subscribe((response: BlogPost[]) => {
       this.posts = response;
