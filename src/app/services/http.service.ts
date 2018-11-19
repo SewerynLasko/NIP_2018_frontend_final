@@ -21,4 +21,12 @@ export class HttpService {
     // return this.httpClient.delete(environment.ENDPOINT_URL + Settings.BLOG_POSTS_V2_CONTROLLER_URL, { params: httpParams });
     return this.httpClient.delete(environment.ENDPOINT_URL + Settings.BLOG_POSTS_V2_CONTROLLER_URL + '/' + postId);
   }
+
+  public postPost(post: BlogPost): Observable<any> {
+    return this.httpClient.post(environment.ENDPOINT_URL + Settings.BLOG_POSTS_V2_CONTROLLER_URL, post);
+  }
+
+  public putPost(post: BlogPost): Observable<any> {
+    return this.httpClient.put(environment.ENDPOINT_URL + Settings.BLOG_POSTS_V2_CONTROLLER_URL + '/' + post.id, post);
+  }
 }
