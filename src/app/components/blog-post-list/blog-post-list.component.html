@@ -1,5 +1,11 @@
 <h3 class="mainHeader">BLOG POST LIST</h3>
-<p-table [value]="posts" [paginator]="true" [rows]="pageSize">
+<p-table [value]="posts"
+         [paginator]="true"
+         [rows]="pageSize"
+         [totalRecords]="totalPosts"
+         (onPage)="onPageChange($event)">
+  <!-- [(first)]="selectedPageIndex" 
+   [(pageLinks)]="pageLinks"-->
   <ng-template pTemplate="header">
     <tr>
       <th>Post ID:</th>

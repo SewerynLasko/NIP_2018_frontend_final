@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { PaginatedItems } from 'app/models/paginatedPosts';
+
 import { BlogPost } from './../../models/blogPost';
 import { HttpService } from './../../services/http.service';
 
@@ -13,12 +15,21 @@ export class BlogPostListComponent implements OnInit {
   public post: BlogPost;
   public pageSize: number = 3;
   public editMode: boolean;
+  public totalPosts: number = 0;
+  public selectedPageIndex: number = 0;
+  //public pageLinks: number = 2;
 
   constructor(private httpService: HttpService) {}
 
   ngOnInit() {
     this.getPostsFromAPI();
     this.editMode = false;
+  }
+
+  onPageChange(event) {
+    if (event && event.first && event.page) {
+      this.getPagedPosts(event.first / event.rows);
+    }
   }
 
   public deletePost(postId: number): void {
@@ -34,6 +45,12 @@ export class BlogPostListComponent implements OnInit {
     //   console.log(response);
     //   this.getPostsFromAPI();
     // });
+    // var post2 = { id: 22, title: 'NiceNewPost' + Date.now().toString(), description: '123', comments: null };
+
+    // this.httpService.postPost(post2).subscribe(response => {
+    //   console.log(response);
+    //   this.getPostsFromAPI();
+    // });
   }
 
   public editPost(post: BlogPost): void {
@@ -46,9 +63,13 @@ export class BlogPostListComponent implements OnInit {
     // });
   }
 
-  public getPagedPosts(): void {
-    this.httpService.getPagedPosts(this.pageSize).subscribe((response: BlogPost[]) => {
-      this.posts = response;
+  public getPagedPosts(pageNumber: number = 0): void {
+    // var pageNumber = offset / this.pageSize;
+    this.httpService.getPagedPosts(this.pageSize, pageNumber).subscribe((response: PaginatedItems) => {
+      if (response && response.items) {
+        this.posts = response.items;
+        this.totalPosts = response.totalItems;
+      }
     });
   }
 

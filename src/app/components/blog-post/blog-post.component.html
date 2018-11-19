@@ -2,7 +2,7 @@
   <h3 *ngIf="post.id != null" class="mainHeader">Edit post (id: {{ post.id }})</h3>
   <h3 *ngIf="post.id == null" class="mainHeader">Add new post</h3>
   <div>
-    <p>Title:</p>
+    <p>Title: (First letter capital, min 3 characters)</p>
     <p><input type="text" [(ngModel)]="postTitle" pInputText placeholder="Post Title" /></p>
   </div>
   <div>

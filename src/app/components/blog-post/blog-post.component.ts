@@ -24,7 +24,10 @@ export class BlogPostComponent implements OnInit, OnChanges {
 
   public saveChanges(): void {
     if (this.postTitle.length > 0 && this.postDescription.length > 0) {
+      this.post.title = this.postTitle;
+      this.post.description = this.postDescription;
       if (this.post.id) {
+        this.editPost();
       } else {
         this.addPost();
       }
@@ -32,9 +35,15 @@ export class BlogPostComponent implements OnInit, OnChanges {
   }
 
   private addPost() {
-    this.post.title = this.postTitle;
-    this.post.description = this.postDescription;
+    this.post.id = Math.floor(Math.random() * 3000);
     this.httpService.postPost(this.post).subscribe(response => {
+      console.log(response);
+      // this.getPostsFromAPI();
+    });
+  }
+
+  private editPost() {
+    this.httpService.putPost(this.post).subscribe(response => {
       console.log(response);
       // this.getPostsFromAPI();
     });
