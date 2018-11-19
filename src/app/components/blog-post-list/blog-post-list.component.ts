@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogPostListComponent implements OnInit {
   public posts: Array<BlogPost>;
+  public post: BlogPost;
 
   constructor(private httpService: HttpService) {}
   ngOnInit() {
@@ -17,6 +18,10 @@ export class BlogPostListComponent implements OnInit {
 
   public deletePost(postId: number) {
     this.httpService.deletePost(postId).subscribe(response => console.log(response));
+  }
+
+  public editPost(post: BlogPost) {
+    this.post = post;
   }
 
   private getPostsFromAPI() {
