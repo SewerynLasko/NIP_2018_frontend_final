@@ -19,7 +19,7 @@ export class BlogPostListComponent implements OnInit {
   public selectedPageIndex: number = 0;
   //public pageLinks: number = 2;
 
-  constructor(private httpService: HttpService) {}
+  constructor(private httpService: HttpService) { }
 
   ngOnInit() {
     this.getPostsFromAPI();
@@ -50,9 +50,10 @@ export class BlogPostListComponent implements OnInit {
   public getPagedPosts(pageNumber: number = 0): void {
     this.httpService.getPagedPosts(this.pageSize, pageNumber).subscribe((response: PaginatedItems) => {
       if (response && response.items) {
-        this.posts = new Array<BlogPost>(response.totalItems);
-        this.posts.splice(pageNumber * this.pageSize, response.items.length, ...response.items);
-        this.posts = response.items;
+        this.posts.concat(response.items);
+        // this.posts = new Array<BlogPost>(response.totalItems);
+        // this.posts.splice(pageNumber * this.pageSize, response.items.length, ...response.items);
+        // this.posts = response.items;
         this.totalPosts = response.totalItems;
       }
     });
