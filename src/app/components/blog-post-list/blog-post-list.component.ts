@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { BlogPost } from './../../models/blogPost';
 import { HttpService } from './../../services/http.service';
@@ -10,9 +10,10 @@ import { HttpService } from './../../services/http.service';
 })
 export class BlogPostListComponent implements OnInit {
   public posts: BlogPost[] = [];
+  public pageSize: number = 3;
 
-  constructor(private httpService: HttpService,
-    private changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private httpService: HttpService) { }
+
   ngOnInit() {
     this.getPostsFromAPI();
   }
@@ -38,9 +39,18 @@ export class BlogPostListComponent implements OnInit {
     });
   }
 
+  public getPagedPosts(): void {
+    this.httpService.getPagedPosts(this.pageSize).subscribe((response: BlogPost[]) => {
+      this.posts = response;
+
+    });
+  }
+
   private getPostsFromAPI(): void {
     this.httpService.getPosts().subscribe((response: BlogPost[]) => {
       this.posts = response;
+
+      this.getPagedPosts();
     });
   }
 }
