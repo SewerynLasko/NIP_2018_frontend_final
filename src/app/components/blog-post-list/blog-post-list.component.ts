@@ -22,11 +22,11 @@ export class BlogPostListComponent implements OnInit {
   }
 
   public addPost(post: BlogPost): void {
-    post = { title: '123', description: '123', comments: null };
+    post = { title: 'NiceNewPost', description: '123', comments: null };
 
     this.httpService.postPost(post).subscribe(response => {
       console.log(response);
-      //  this.getPostsFromAPI();
+      this.getPostsFromAPI();
     });
   }
 
@@ -41,8 +41,6 @@ export class BlogPostListComponent implements OnInit {
   private getPostsFromAPI(): void {
     this.httpService.getPosts().subscribe((response: BlogPost[]) => {
       this.posts = response;
-      // this.changeDetectorRef.detectChanges();
-      //  this.posts = [];
     });
   }
 }
