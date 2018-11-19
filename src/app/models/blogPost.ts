@@ -3,9 +3,9 @@ import { BlogPostComment } from './blogPostComment';
 export class BlogPost implements BlogPost {
   constructor() {
     this.id = null;
-    this.title = null;
-    this.description = null;
-    this.comments = null;
+    this.title = '';
+    this.description = '';
+    this.comments = new Array<BlogPostComment>();
   }
 }
 

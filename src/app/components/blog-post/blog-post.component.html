@@ -10,5 +10,36 @@
     <p><input type="text" [(ngModel)]="postDescription" pInputText placeholder="Post Description" /></p>
   </div>
 
+  <hr />
+
+  <h1 class="mainHeader">Post Comments:</h1>
+  <p-table [value]="post.comments">
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Author:</th>
+        <th>Post Title:</th>
+        <th>Delete:</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-postComments>
+      <tr>
+        <td>{{ postComments.author }}</td>
+        <td>{{ postComments.content }}</td>
+        <td><p-button label="Delete" (click)="deleteComment(postComments)"></p-button></td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <div>
+    <p>Author:</p>
+    <p><input type="text" [(ngModel)]="commentAuthor" pInputText placeholder="Comment Author" /></p>
+  </div>
+  <div>
+    <p>Content:</p>
+    <p><input type="text" [(ngModel)]="commentContent" pInputText placeholder="Comment Concent" /></p>
+  </div>
+
+  <p-button style="margin-top: 50px; margin-bottom: 30px" label="Add comment!" (click)="addComment()"></p-button>
+  <hr />
   <p-button style="margin-top: 50px" label="Save changes!" (click)="saveChanges()"></p-button>
 </div>
