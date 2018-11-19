@@ -15,7 +15,10 @@ export class BlogPostComponent implements OnInit, OnChanges {
 
   ngOnInit() {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
+  ngOnChanges(changes: any) {
+    if (changes && changes.post && changes.post.currentValue) {
+      this.postTitle = changes.post.currentValue.title;
+      this.postDescription = changes.post.currentValue.description;
+    }
   }
 }

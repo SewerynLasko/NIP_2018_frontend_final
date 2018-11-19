@@ -27,6 +27,12 @@
     "@ngtools/json-schema" "^1.1.0"
     rxjs "^5.5.6"
 
+"@angular/animations@5.2.10":
+  version "5.2.10"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-5.2.10.tgz#61718792e0922ac622fd7c6dfb0afbb996638692"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/cli@1.7.4":
   version "1.7.4"
   resolved "https://registry.yarnpkg.com/@angular/cli/-/cli-1.7.4.tgz#b6c31b5fc6f8ea07e55b1b01a26422f5358a4ea6"
@@ -4501,6 +4507,10 @@ pretty-error@^2.0.2:
   dependencies:
     renderkid "^2.0.1"
     utila "~0.4"
+
+primeng@^6.1.6:
+  version "6.1.6"
+  resolved "https://registry.yarnpkg.com/primeng/-/primeng-6.1.6.tgz#3a699a02507fcd5befb2fb9fe18fcc5d385f810e"
 
 process-nextick-args@~2.0.0:
   version "2.0.0"
