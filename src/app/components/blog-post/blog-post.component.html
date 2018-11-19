@@ -1,6 +1,14 @@
-<div>
-  <h3 class="mainHeader">ADD/EDIT Post</h3>
+<div class="editWindow">
+  <h3 *ngIf="post.id != null" class="mainHeader">Edit post (id: {{ post.id }})</h3>
+  <h3 *ngIf="post.id == null" class="mainHeader">Add new post</h3>
+  <div>
+    <p>Title:</p>
+    <p><input type="text" [(ngModel)]="postTitle" pInputText placeholder="Post Title" /></p>
+  </div>
+  <div>
+    <p>Description:</p>
+    <p><input type="text" [(ngModel)]="postDescription" pInputText placeholder="Post Description" /></p>
+  </div>
 
-  <p><input type="text" [(ngModel)]="postTitle" pInputText placeholder="Post Title"/></p>
-  <p><input type="text" [(ngModel)]="postDescription" pInputText placeholder="Post Description"/></p>
+  <p-button style="margin-top: 50px" label="Save changes!" (click)="saveChanges()"></p-button>
 </div>

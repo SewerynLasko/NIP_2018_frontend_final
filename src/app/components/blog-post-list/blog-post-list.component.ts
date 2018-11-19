@@ -10,12 +10,15 @@ import { HttpService } from './../../services/http.service';
 })
 export class BlogPostListComponent implements OnInit {
   public posts: BlogPost[] = [];
+  public post: BlogPost;
   public pageSize: number = 3;
+  public editMode: boolean;
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService) {}
 
   ngOnInit() {
     this.getPostsFromAPI();
+    this.editMode = false;
   }
 
   public deletePost(postId: number): void {
@@ -23,33 +26,35 @@ export class BlogPostListComponent implements OnInit {
   }
 
   public addPost(post: BlogPost): void {
-    post = { title: 'NiceNewPost', description: '123', comments: null };
+    this.editMode = true;
+    this.post = new BlogPost();
+    // post = { title: 'NiceNewPost', description: '123', comments: null };
 
-    this.httpService.postPost(post).subscribe(response => {
-      console.log(response);
-      this.getPostsFromAPI();
-    });
+    // this.httpService.postPost(post).subscribe(response => {
+    //   console.log(response);
+    //   this.getPostsFromAPI();
+    // });
   }
 
   public editPost(post: BlogPost): void {
-    post.description += 'Mod';
-    this.httpService.putPost(post).subscribe(response => {
-      console.log(response);
-      this.getPostsFromAPI();
-    });
+    this.editMode = true;
+    this.post = post;
+    // post.description += 'Mod';
+    // this.httpService.putPost(post).subscribe(response => {
+    //   console.log(response);
+    //   this.getPostsFromAPI();
+    // });
   }
 
   public getPagedPosts(): void {
     this.httpService.getPagedPosts(this.pageSize).subscribe((response: BlogPost[]) => {
       this.posts = response;
-
     });
   }
 
   private getPostsFromAPI(): void {
     this.httpService.getPosts().subscribe((response: BlogPost[]) => {
       this.posts = response;
-
       this.getPagedPosts();
     });
   }

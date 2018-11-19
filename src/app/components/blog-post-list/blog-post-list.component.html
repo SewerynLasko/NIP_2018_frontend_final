@@ -1,7 +1,5 @@
 <h3 class="mainHeader">BLOG POST LIST</h3>
-<p-table [value]="posts"
-         [paginator]="true"
-         [rows]="pageSize">
+<p-table [value]="posts" [paginator]="true" [rows]="pageSize">
   <ng-template pTemplate="header">
     <tr>
       <th>Post ID:</th>
@@ -12,24 +10,16 @@
       <th>Delete:</th>
     </tr>
   </ng-template>
-  <ng-template pTemplate="body"
-               let-post>
+  <ng-template pTemplate="body" let-post>
     <tr>
       <td>{{ post.id }}</td>
       <td>{{ post.title }}</td>
       <td>{{ post.description }}</td>
       <td>{{ post.comments ? post.comments.length : 0 }}</td>
-      <td>
-        <p-button label="Edit"
-                  (click)="editPost(post)"></p-button>
-      </td>
-      <td>
-        <p-button label="Delete"
-                  (click)="deletePost(post.id)"></p-button>
-      </td>
+      <td><p-button label="Edit" (click)="editPost(post)"></p-button></td>
+      <td><p-button label="Delete" (click)="deletePost(post.id)"></p-button></td>
     </tr>
   </ng-template>
 </p-table>
-<p-button style="margin-top: 50px"
-          label="Add Post!"
-          (click)=addPost()></p-button>
+<p-button style="margin-top: 50px" label="Add Post!" (click)="addPost()"></p-button>
+<app-blog-post *ngIf="editMode" [post]="post"></app-blog-post>
