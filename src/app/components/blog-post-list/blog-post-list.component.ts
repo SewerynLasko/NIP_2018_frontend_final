@@ -34,33 +34,17 @@ export class BlogPostListComponent implements OnInit {
 
   public deletePost(postId: number): void {
     this.httpService.deletePost(postId).subscribe(response => console.log(response));
+    this.getPostsFromAPI();
   }
 
   public addPost(post: BlogPost): void {
     this.editMode = true;
     this.post = new BlogPost();
-    // post = { title: 'NiceNewPost', description: '123', comments: null };
-
-    // this.httpService.postPost(post).subscribe(response => {
-    //   console.log(response);
-    //   this.getPostsFromAPI();
-    // });
-    // var post2 = { id: 22, title: 'NiceNewPost' + Date.now().toString(), description: '123', comments: null };
-
-    // this.httpService.postPost(post2).subscribe(response => {
-    //   console.log(response);
-    //   this.getPostsFromAPI();
-    // });
   }
 
   public editPost(post: BlogPost): void {
     this.editMode = true;
     this.post = post;
-    // post.description += 'Mod';
-    // this.httpService.putPost(post).subscribe(response => {
-    //   console.log(response);
-    //   this.getPostsFromAPI();
-    // });
   }
 
   public getPagedPosts(pageNumber: number = 0): void {
@@ -72,6 +56,10 @@ export class BlogPostListComponent implements OnInit {
         this.totalPosts = response.totalItems;
       }
     });
+  }
+
+  public disableEditMode() {
+    this.editMode = false;
   }
 
   private getPostsFromAPI(): void {

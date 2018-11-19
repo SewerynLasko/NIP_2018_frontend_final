@@ -28,4 +28,4 @@
   </ng-template>
 </p-table>
 <p-button style="margin-top: 50px" label="Add Post!" (click)="addPost()"></p-button>
-<app-blog-post *ngIf="editMode" [post]="post"></app-blog-post>
+<app-blog-post *ngIf="editMode" [post]="post" (postChanged)="disableEditMode()"></app-blog-post>

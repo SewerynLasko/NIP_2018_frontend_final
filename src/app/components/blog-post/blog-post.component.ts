@@ -1,5 +1,5 @@
 import { HttpService } from './../../services/http.service';
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, EventEmitter, Output } from '@angular/core';
 
 import { BlogPost } from './../../models/blogPost';
 @Component({
@@ -9,6 +9,8 @@ import { BlogPost } from './../../models/blogPost';
 })
 export class BlogPostComponent implements OnInit, OnChanges {
   @Input() post: BlogPost;
+  @Output() postChanged= new EventEmitter();
+
   postTitle: string;
   postDescription: string;
   constructor(private httpService: HttpService) {}
@@ -39,6 +41,7 @@ export class BlogPostComponent implements OnInit, OnChanges {
     this.httpService.postPost(this.post).subscribe(response => {
       console.log(response);
       // this.getPostsFromAPI();
+      this.postChanged.emit(true);
     });
   }
 
@@ -46,6 +49,7 @@ export class BlogPostComponent implements OnInit, OnChanges {
     this.httpService.putPost(this.post).subscribe(response => {
       console.log(response);
       // this.getPostsFromAPI();
+      this.postChanged.emit(true);
     });
   }
 }
