@@ -24,7 +24,7 @@ export class BlogPostListComponent implements OnInit {
   }
 
   onPageChange(event) {
-    if (event && event.first && event.page) {
+    if (event && event.first && event.rows) {
       this.getPagedPosts(event.first / event.rows);
     }
   }
@@ -51,9 +51,10 @@ export class BlogPostListComponent implements OnInit {
   }
 
   public getPagedPosts(pageNumber: number = 0): void {
-    // var pageNumber = offset / this.pageSize;
     this.httpService.getPagedPosts(this.pageSize, pageNumber).subscribe((response: PaginatedItems) => {
       if (response && response.items) {
+        this.posts = new Array<BlogPost>(response.totalItems);
+        this.posts.splice(pageNumber * this.pageSize, response.items.length, ...response.items);
         this.posts = response.items;
         this.totalPosts = response.totalItems;
 
