@@ -11,7 +11,7 @@
       <th>Post ID:</th>
       <th>Post Title:</th>
       <th>Post Description:</th>
-      <th>Comments Amount:</th>
+      <!-- <th>Comments Amount:</th> -->
       <th>Edit:</th>
       <th>Delete:</th>
     </tr>
@@ -21,7 +21,7 @@
       <td>{{ post.id }}</td>
       <td>{{ post.title }}</td>
       <td>{{ post.description }}</td>
-      <td>{{ post.comments ? post.comments.length : 0 }}</td>
+      <!-- <td>{{ post.comments ? post.comments.length : 0 }}</td> -->
       <td><p-button label="Edit" (click)="editPost(post)"></p-button></td>
       <td><p-button label="Delete" (click)="deletePost(post.id)"></p-button></td>
     </tr>
