@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  ENDPOINT_URL: 'http://localhost:61063/'
+  ENDPOINT_URL: 'http://localhost:63736/'
 };

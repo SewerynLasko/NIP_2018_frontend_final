@@ -13,13 +13,13 @@ import { HttpService } from './../../services/http.service';
 export class BlogPostListComponent implements OnInit {
   public posts: BlogPost[] = [];
   public post: BlogPost;
-  public pageSize: number = 3;
+  public pageSize: number = 40;
   public editMode: boolean;
   public totalPosts: number = 0;
   public selectedPageIndex: number = 0;
   //public pageLinks: number = 2;
 
-  constructor(private httpService: HttpService) { }
+  constructor(private httpService: HttpService) {}
 
   ngOnInit() {
     this.getPostsFromAPI();
@@ -33,8 +33,7 @@ export class BlogPostListComponent implements OnInit {
   }
 
   public deletePost(postId: number): void {
-    this.httpService.deletePost(postId).subscribe(response => console.log(response));
-    this.getPostsFromAPI();
+    this.httpService.deletePost(postId).subscribe(response => this.getPostsFromAPI());
   }
 
   public addPost(post: BlogPost): void {
@@ -61,6 +60,7 @@ export class BlogPostListComponent implements OnInit {
 
   public disableEditMode() {
     this.editMode = false;
+    this.getPostsFromAPI();
   }
 
   private getPostsFromAPI(): void {
